@@ -618,7 +618,7 @@ class Tapper:
 
                         solve = await solve_captcha(bizId, captcha_data)
                         # print(solve)
-                        await asyncio.sleep(random.uniform(2,4))
+                        await asyncio.sleep(random.uniform(1,1))
                         if solve['ok']:
                             sol = solve['solution']
                             # print(sol)
@@ -673,7 +673,7 @@ class Tapper:
                 print(response.text)
                 logger.warning(f"Start game failed: {response.status_code}")
 
-            sleep_ = uniform(20, 25)
+            sleep_ = uniform(1, 2)
 
             logger.info(f"{self.session_name} | Sleep {sleep_}s...")
 
@@ -731,7 +731,7 @@ class Tapper:
                             else:
                                 logger.warning(
                                     f"{self.session_name} | <light-yellow> Failed to complete task: {task['type']}, msg: {check}</light-yellow>")
-                            await asyncio.sleep(uniform(3, 5))
+                            await asyncio.sleep(uniform(1, 1))
 
                 if settings.AUTO_PLAY_GAME:
                     await self.play_game(session)
@@ -748,7 +748,7 @@ class Tapper:
             except Exception as error:
                 traceback.print_exc()
                 logger.error(f"{self.session_name} | Unknown error: {error}")
-                await asyncio.sleep(delay=randint(60, 120))
+                await asyncio.sleep(delay=randint(6, 12))
 
 
 async def run_tapper_no_thread(tg_clients, proxies):
@@ -760,7 +760,7 @@ async def run_tapper_no_thread(tg_clients, proxies):
             except InvalidSession:
                 logger.error(f"{tg_client.name} | Invalid Session")
 
-        sleep_ = randint(1500, 2500)
+        sleep_ = randint(10, 20)
         logger.info(f"<red>Sleep {sleep_}s...</red>")
         await asyncio.sleep(sleep_)
 
